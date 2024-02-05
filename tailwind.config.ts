@@ -12,17 +12,15 @@ const config = {
   theme: {
     container: {
       center: true,
-      padding: {
-        DEFAULT: '1rem',
-        md: '1.5rem',
-        lg: '2rem'
-      },
+      padding: '2rem',
       screens: {
         '2xl': '1400px'
       }
     },
     extend: {
       colors: {
+        DarkGray: 'hsl(var(--DarkGray))',
+        VeryDarkGray: 'hsl(var(--VeryDarkGray))',
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
