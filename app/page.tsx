@@ -1,34 +1,44 @@
-import LocationInput from '@/components/LocationInput'
-import React from 'react'
-import InfoCard from '@/components/InfoCard'
-import Map from '@/components/Map'
 import { getUserIp } from '@/actions/get-usersIp'
 import { getLocation } from '@/actions/get-location'
+import TestCard from '@/components/TestCard'
 
 const HomePage = async () => {
   const ip = await getUserIp()
+
   const data = await getLocation(ip)
-  const location = data.location.city
-  const region = data.location.region
-  const timezone = data.location.timezone
-  const isp = data.isp
-  const lng = data.location.lng
-  const lat = data.location.lat
+  const { city, region, timezone, lng, lat } = data.location
+  const { isp } = data
+
+  // const handleSubmit = (values: { ip: string }) => {
+  //   // setIp(values.ip)
+  //   console.log(values)
+  // }
 
   return (
     <section className='relative'>
       <div className='background-image h-[19.5rem] w-full' />
-      <div className='container absolute left-0 top-0 grid gap-10'>
-        <LocationInput />
+      {/* <div className='container absolute left-1/2 top-0 z-50 -translate-x-1/2 space-y-10'> */}
+      {/* <LocationInput />
         <InfoCard
           region={region}
           ip={ip.ip}
-          location={location}
+          location={city}
           timezone={timezone}
           isp={isp}
-        />
-      </div>
-      <Map lng={lng} lat={lat} />
+        /> */}
+      <TestCard
+        ip={ip.ip}
+        region={region}
+        location={city}
+        timezone={timezone}
+        isp={isp}
+        lat={lat}
+        lng={lng}
+      />
+      {/* </div> */}
+      {/* <div className='relative z-0'>
+        <Map lng={lng} lat={lat} />
+      </div> */}
     </section>
   )
 }

@@ -16,32 +16,33 @@ import {
 import { Input } from '@/components/ui/input'
 import Image from 'next/image'
 import arrowIcon from '../public/icon-arrow.svg'
-import { getLocation } from '@/actions/get-location'
 
 const formSchema = z.object({
-  data: z.string().min(2).max(50)
+  ip: z.string().min(2).max(50)
 })
 
-const LocationInput = () => {
+const LocationInput: React.FC<{
+  onSubmit: (values: { ip: string }) => void
+}> = props => {
+  const { onSubmit } = props
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      data: ''
+      ip: ''
     }
   })
 
-  async function onSubmit(values: z.infer<typeof formSchema>) {
-    const location = await getLocation(values)
+  async function submitForm(values: z.infer<typeof formSchema>) {
+    onSubmit(values)
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    console.log(location)
   }
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
+      <form onSubmit={form.handleSubmit(submitForm)} className='space-y-8'>
         <FormField
           control={form.control}
-          name='data'
+          name='ip'
           render={({ field }) => (
             <FormItem>
               <FormLabel className='text-center text-white'>

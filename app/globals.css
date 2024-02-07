@@ -81,3 +81,7 @@
 .background-image {
   @apply bg-[url('/pattern-bg-mobile.png')] bg-cover bg-center bg-no-repeat md:bg-[url('/pattern-bg-desktop.png')];
 }
+
+.leaflet-container {
+  height: 80vh;
+}

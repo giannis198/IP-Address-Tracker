@@ -35,7 +35,7 @@ export const getLocation = async ({
 
   const URL = `
 https://geo.ipify.org/api/v2/country,city?apiKey=${key}&ipAddress=${ip}`
-  const res = await fetch(URL, { next: { revalidate: 0 } })
+  const res = await fetch(URL, { next: { revalidate: 3600 } })
 
   const data: LocationData = await res.json()
 
